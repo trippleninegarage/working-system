@@ -19,7 +19,7 @@
         nav ul { list-style: none; padding: 0; }
         nav li { padding: 15px; cursor: pointer; border-radius: 5px; margin-bottom: 8px; transition: 0.3s; border-left: 3px solid transparent; }
         nav li:hover { background: #2a2a2a; border-left: 3px solid var(--accent); }
-
+		
         /* Main Dashboard - รวมภาพพื้นหลังและความมืด 50% */
         main { 
             margin-top: 70px; 
@@ -64,7 +64,9 @@
             <li>➕ Stock System</li>
             <hr style="border: 0; border-top: 1px solid #333; margin: 15px 0;">
             <li>👥 User Manager</li>
-        </ul>
+        	<hr style="border: 0; border-top: 1px solid #333; margin: 15px 0;">
+			<li onclick="logout()" style="color: #ff4d4d; cursor: pointer;">⏻ Logout</li>
+		</ul>
     </nav>
 
     <main>
@@ -137,6 +139,15 @@
         .catch(err => {
             alert("เกิดข้อผิดพลาด: " + err);
         });
+    }
+		
+    function logout() {
+        if(confirm("คุณต้องการออกจากระบบใช่หรือไม่?")) {
+            // ล้างข้อมูล Session หรือ Token (ตัวอย่าง)
+            localStorage.clear(); 
+            // เปลี่ยนหน้าไปยังหน้า Login
+            window.location.href = "login.html"; // เปลี่ยนชื่อไฟล์ให้ตรงกับหน้า Login ของคุณ
+        }
     }
 </script>
 </body>
