@@ -25,36 +25,27 @@
     </div>
 
 	<script>
-        // 1. ดักจับเหตุการณ์ตอนที่ผู้ใช้กดปุ่ม "เข้าสู่ระบบ"
         document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // ป้องกันไม่ให้หน้าเว็บรีโหลดหรือเปลี่ยนหน้าเองก่อนได้รับอนุญาต
+            e.preventDefault(); // ป้องกันไม่ให้หน้าเว็บรีเฟรชตัวเองตอนกดส่ง
 
-            // 2. ดึงค่าจากช่อง Username และ Password ที่ผู้ใช้กรอกบนหน้าเว็บ
             var userVal = document.getElementById('username').value;
             var passVal = document.getElementById('password').value;
 
-            // นำลิงก์ Web App URL ของคุณมาวางแทนที่ตรงนี้ครับ
-            var webAppUrl = "https://script.google.com/macros/s/AKfycbyW2sAMku5MGZAmTbxRqIM78Qf8-0CE5G2XTv7ZtTkSKSokUgFt0Jyu_raACh9UG8Af/exec"; 
+            // ⚠️ ตรวจสอบและสลับเอาลิงก์ Web App (doGet) ตัวล่าสุดจาก Google Sheets ของคุณมาใส่ตรงนี้
+            var webAppUrl = "https://script.google.com/macros/s/AKfycbwwSjLhdCJgzh6XY-syMz9Pq-TBOsEMYI6ESTMLof21yw-JocbnzmXIMTT03afvJ3jv/exec"; 
 
-            // แสดงข้อความบอกผู้ใช้ว่ากำลังตรวจสอบข้อมูล
-            console.log("กำลังส่งข้อมูลไปเช็กที่ Google Sheets...");
+            // ปรับโครงสร้างข้อมูลเป็นการยิงแบบ GET (ต่อท้าย URL) เพื่อทะลุกำแพง CORS บนระบบออนไลน์
+            var finalUrl = webAppUrl + "?username=" + encodeURIComponent(userVal) + "&password=" + encodeURIComponent(passVal);
 
-            // 3. ส่งข้อมูลไปเช็กที่หลังบ้าน (Google Sheets)
-            fetch(webAppUrl, {
-                method: 'POST',
-                body: JSON.stringify({
-                    username: userVal,
-                    password: passVal
-                })
-            })
+            console.log("กำลังเชื่อมต่อระบบเพื่อตรวจสอบสิทธิ์...");
+
+            fetch(finalUrl)
             .then(response => response.json())
             .then(data => {
-                // 4. ได้รับผลลัพธ์กลับมาจาก Google Sheets แล้ว
                 if (data.success) {
-                    // ถ้าล็อกอินผ่าน แจ้งเตือนสิทธิ์ และเปลี่ยนหน้าอัตโนมัติ
-                    alert(data.message + " \nสิทธิ์ของคุณคือ: " + data.role);
+                    alert(data.message + " \nระดับสิทธิ์ของคุณคือ: " + data.role);
                     
-                    // 5. แยกเส้นทางหน้าจอตามประเภท User (Role)
+                    // ระบบจะแยกทางเดินหน้าเว็บตามตำแหน่ง (Role) ของผู้ล็อกอินอัตโนมัติ
                     if (data.role === 'admin') {
                         window.location.href = 'admin.html';
                     } else if (data.role === 'manager') {
@@ -63,15 +54,14 @@
                         window.location.href = 'user.html';
                     }
                 } else {
-                    // ถ้าใส่รหัสผิด หรือไม่พบชื่อผู้ใช้ในตาราง
-                    alert(data.message);
+                    alert(data.message); // กรณีรหัสผิดหรือหาชื่อไม่เจอ จะแจ้งเตือนตามที่ Sheet ส่งมา
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('เกิดข้อผิดพลาดในการเชื่อมต่อระบบหลังบ้าน หรือลิงก์ URL ไม่ถูกต้อง');
+                alert('เกิดข้อผิดพลาดในการเชื่อมต่อหลังบ้าน กรุณาตรวจสอบลิงก์สคริปต์หรือการเชื่อมต่ออินเทอร์เน็ต');
             });
-        });
     </script>
+  
 </body>
 </html>
