@@ -57,7 +57,7 @@
     <nav>
         <h2>TRIPPLENINE GARAGE</h2>
         <ul>
-            <li>📂 JOB เปิดจ๊อบ</li>
+            <li onclick="openJobModal()">📂 JOB เปิดจ๊อบ</li>
             <li>📜 JOB History</li>
             <hr style="border: 0; border-top: 1px solid #333; margin: 15px 0;">
             <li>📦 Check Stock</li>
@@ -79,7 +79,21 @@
         <textarea style="width:100%; height:70%; background:#000; color:#fff; border:1px solid #333; padding:10px;"></textarea>
         <button style="margin-top:10px; width:100%; padding:10px; background:var(--accent); color:white; border:none; cursor:pointer;" onclick="toggleChat()">ปิด</button>
     </div>
-
+	<div id="jobModal" style="display:none; position:fixed; top:10%; left:25%; width:50%; background:#1e1e1e; border:1px solid var(--accent); border-radius:10px; z-index:200; padding:30px;">
+    	<h2 style="color:var(--accent)">เปิด JOB ใหม่</h2>
+    	<form id="jobForm" style="display:flex; flex-direction:column; gap:10px;">
+        	<select id="jobType" style="padding:10px; background:#000; color:white; border:1px solid #333;">
+            	<option value="งานประกัน">งานประกัน</option>
+            	<option value="ลูกค้าสด">ลูกค้าสด</option>
+            	<option value="ขายอะไหล่">ขายอะไหล่</option>
+        	</select>
+        	<input type="text" id="custName" placeholder="ชื่อลูกค้า" style="padding:10px; background:#000; color:white; border:1px solid #333;">
+        	<input type="text" id="phone" placeholder="เบอร์โทรศัพท์" style="padding:10px; background:#000; color:white; border:1px solid #333;">
+        	<textarea id="jobDetail" placeholder="รายละเอียดงาน" style="padding:10px; background:#000; color:white; border:1px solid #333; height:80px;"></textarea>
+        	<button type="button" onclick="saveJob()" style="padding:10px; background:var(--accent); color:white; border:none; cursor:pointer;">บันทึก JOB</button>
+        	<button type="button" onclick="closeJobModal()" style="padding:10px; background:#444; color:white; border:none; cursor:pointer;">ปิด</button>
+    	</form>
+	</div>
     <script>
         function toggleChat() {
             const modal = document.getElementById('aiModal');
