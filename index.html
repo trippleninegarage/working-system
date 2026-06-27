@@ -32,7 +32,7 @@
             var passVal = document.getElementById('password').value;
 
             // ⚠️ ตรวจสอบและสลับเอาลิงก์ Web App (doGet) ตัวล่าสุดจาก Google Sheets ของคุณมาใส่ตรงนี้
-            var webAppUrl = "https://script.google.com/macros/s/AKfycbwwSjLhdCJgzh6XY-syMz9Pq-TBOsEMYI6ESTMLof21yw-JocbnzmXIMTT03afvJ3jv/exec"; 
+            var webAppUrl = "https://script.google.com/macros/s/AKfycbyf0ViBvN5c5VG3x_ajh8dH5k_PAhmHCxK_U1w_Cf7fa-bn-gUgxtTtie143shnsAIy/exec"; 
 
             // ปรับโครงสร้างข้อมูลเป็นการยิงแบบ GET (ต่อท้าย URL) เพื่อทะลุกำแพง CORS บนระบบออนไลน์
             var finalUrl = webAppUrl + "?username=" + encodeURIComponent(userVal) + "&password=" + encodeURIComponent(passVal);
