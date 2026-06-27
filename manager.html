@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>TrippleNine Garage | Manager System</title>
+    <style>
+        :root { --bg: #121212; --panel: #1e1e1e; --accent: #c34a36; --text: #e0e0e0; }
+        body { margin: 0; display: flex; font-family: 'Prompt', sans-serif; background: var(--bg); color: var(--text); height: 100vh; }
+
+        /* 1. ส่วนหัว (Header) - ปรับเพิ่ม Avatar & AI */
+        header { position: fixed; top: 0; left: 250px; right: 0; height: 70px; background: #000; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; border-bottom: 2px solid var(--accent); }
+        .user-profile { display: flex; align-items: center; gap: 10px; }
+        .avatar { width: 40px; height: 40px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .ai-chat-box { flex-grow: 1; margin: 0 40px; background: #222; padding: 5px 15px; border-radius: 20px; color: #888; border: 1px solid #444; }
+
+        /* 2. ฝั่งซ้าย (Nav.) - จัดหมวดหมู่ใหม่ */
+        nav { width: 250px; background: var(--panel); border-right: 1px solid #333; padding: 20px; }
+        nav h2 { color: var(--accent); font-size: 18px; margin-bottom: 20px; }
+        nav ul { list-style: none; padding: 0; }
+        nav li { padding: 12px; cursor: pointer; border-radius: 5px; margin-bottom: 5px; transition: 0.3s; }
+        nav li:hover { background: var(--accent); }
+
+        /* 3. ตรงกลาง (Working Dashboard) */
+        main { margin-top: 70px; margin-left: 250px; flex-grow: 1; padding: 30px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="user-profile">
+            <div class="avatar">👤</div>
+            <div>
+                <div style="font-size: 14px;">Manager Name</div>
+                <button style="font-size: 10px; cursor: pointer;">แก้ไขรูป</button>
+            </div>
+        </div>
+        <div class="ai-chat-box">ปรึกษา AI จัดการงาน...</div>
+        <div style="cursor: pointer;">🏠 Home</div>
+    </header>
+
+    <nav>
+        <h2>TRIPPLENINE GARAGE</h2>
+        <ul>
+            <li>📂 JOB เปิดจ๊อบ</li>
+            <li>📜 JOB History</li>
+            <hr style="border: 0; border-top: 1px solid #333; margin: 15px 0;">
+            <li>📦 Check Stock</li>
+            <li>➕ Stock System</li>
+            <hr style="border: 0; border-top: 1px solid #333; margin: 15px 0;">
+            <li>👥 User Manager</li>
+        </ul>
+    </nav>
+
+    <main>
+        <div id="content-area">
+            <h1>ยินดีต้อนรับสู่ระบบบริหารจัดการ</h1>
+            <p>เลือกเมนูทางซ้ายเพื่อเริ่มต้นจัดการงานของคุณ</p>
+        </div>
+    </main>
+
+</body>
+</html>
