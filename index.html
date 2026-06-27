@@ -39,13 +39,14 @@
 
             console.log("กำลังเชื่อมต่อระบบเพื่อตรวจสอบสิทธิ์...");
 
+            console.log("กำลังส่งข้อมูลไปเช็กที่ Google Sheets...");
+
             fetch(finalUrl)
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
                     alert(data.message + " \nระดับสิทธิ์ของคุณคือ: " + data.role);
                     
-                    // ระบบจะแยกทางเดินหน้าเว็บตามตำแหน่ง (Role) ของผู้ล็อกอินอัตโนมัติ
                     if (data.role === 'admin') {
                         window.location.href = 'admin.html';
                     } else if (data.role === 'manager') {
@@ -54,13 +55,14 @@
                         window.location.href = 'user.html';
                     }
                 } else {
-                    alert(data.message); // กรณีรหัสผิดหรือหาชื่อไม่เจอ จะแจ้งเตือนตามที่ Sheet ส่งมา
+                    alert(data.message);
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
                 alert('เกิดข้อผิดพลาดในการเชื่อมต่อหลังบ้าน กรุณาตรวจสอบลิงก์สคริปต์หรือการเชื่อมต่ออินเทอร์เน็ต');
             });
+        });
     </script>
   
 </body>
