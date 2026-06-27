@@ -95,43 +95,48 @@
     	</form>
 	</div>
     <script>
-        function toggleChat() {
-            const modal = document.getElementById('aiModal');
-            modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
-        }
+    function toggleChat() {
+        const modal = document.getElementById('aiModal');
+        modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
+    }
 
-        // เพิ่มฟังก์ชันเปิด/ปิดที่ขาดไป
-        function openJobModal() {
-            document.getElementById('jobModal').style.display = 'block';
-        }
+    // ฟังก์ชันเปิดหน้าต่าง JOB
+    function openJobModal() {
+        document.getElementById('jobModal').style.display = 'block';
+    }
 
-        function closeJobModal() {
-            document.getElementById('jobModal').style.display = 'none';
-        }
+    // ฟังก์ชันปิดหน้าต่าง JOB
+    function closeJobModal() {
+        document.getElementById('jobModal').style.display = 'none';
+    }
 
-        function saveJob() {
-            const url = "https://script.google.com/macros/s/AKfycbwaxZ8gCjps6EpLEYCGa2WgpsGw_lR6br4_cGiTRX4mlFTrh8LJ4zg_lRjUK7BEWHciCw/exec"; 
-            
-            const payload = {
-                jobType: document.getElementById('jobType').value,
-                custName: document.getElementById('custName').value,
-                // carPlate ลบออกไปเลยถ้าไม่มีช่องนี้ใน HTML
-                phone: document.getElementById('phone').value,
-                jobDetail: document.getElementById('jobDetail').value
-            };
+    // ฟังก์ชันบันทึก JOB
+    function saveJob() {
+        const url = "https://script.google.com/macros/s/AKfycbwaxZ8gCjps6EpLEYCGa2WgpsGw_lR6br4_cGiTRX4mlFTrh8LJ4zg_lRjUK7BEWHciCw/exec"; 
+        
+        // ดึงค่าจาก HTML มาเก็บไว้
+        const payload = {
+            jobType: document.getElementById('jobType').value,
+            custName: document.getElementById('custName').value,
+            carPlate: document.getElementById('carPlate') ? document.getElementById('carPlate').value : '-', 
+            phone: document.getElementById('phone').value,
+            jobDetail: document.getElementById('jobDetail').value
+        };
 
-            fetch(url, {
-                method: "POST",
-                mode: "no-cors",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            })
-            .then(() => {
-                alert("บันทึก JOB เรียบร้อย!");
-                closeJobModal();
-            })
-            .catch(err => alert("เกิดข้อผิดพลาด: " + err));
-        }
-    </script>
+        fetch(url, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        })
+        .then(() => {
+            alert("บันทึก JOB เรียบร้อย!");
+            closeJobModal();
+        })
+        .catch(err => {
+            alert("เกิดข้อผิดพลาด: " + err);
+        });
+    }
+</script>
 </body>
 </html>
