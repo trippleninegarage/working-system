@@ -25,11 +25,11 @@
     </div>
 
 	<script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // ป้องกันไม่ให้หน้าเว็บรีเฟรชตัวเองตอนกดส่ง
+        document.getElementById('submitBtn').addEventListener('click', function(e) {
+    		e.preventDefault(); // ล็อกหน้าเว็บไม่ให้รีเฟรชซ้ำสอง
 
-            var userVal = document.getElementById('username').value;
-            var passVal = document.getElementById('password').value;
+    		var userVal = document.getElementById('username').value;
+    		var passVal = document.getElementById('password').value;
 
             // ⚠️ ตรวจสอบและสลับเอาลิงก์ Web App (doGet) ตัวล่าสุดจาก Google Sheets ของคุณมาใส่ตรงนี้
             var webAppUrl = "https://script.google.com/macros/s/AKfycbyf0ViBvN5c5VG3x_ajh8dH5k_PAhmHCxK_U1w_Cf7fa-bn-gUgxtTtie143shnsAIy/exec"; 
