@@ -88,7 +88,8 @@
             	<option value="ขายอะไหล่">ขายอะไหล่</option>
         	</select>
         	<input type="text" id="custName" placeholder="ชื่อลูกค้า" style="padding:10px; background:#000; color:white; border:1px solid #333;">
-        	<input type="text" id="phone" placeholder="เบอร์โทรศัพท์" style="padding:10px; background:#000; color:white; border:1px solid #333;">
+        	<input type="text" id="carPlate" placeholder="ทะเบียนรถ (ถ้ามี)" style="padding:10px; background:#000; color:white; border:1px solid #333; margin-bottom:10px;">
+			<input type="text" id="phone" placeholder="เบอร์โทรศัพท์" style="padding:10px; background:#000; color:white; border:1px solid #333;">
         	<textarea id="jobDetail" placeholder="รายละเอียดงาน" style="padding:10px; background:#000; color:white; border:1px solid #333; height:80px;"></textarea>
         	<button type="button" onclick="saveJob()" style="padding:10px; background:var(--accent); color:white; border:none; cursor:pointer;">บันทึก JOB</button>
         	<button type="button" onclick="closeJobModal()" style="padding:10px; background:#444; color:white; border:none; cursor:pointer;">ปิด</button>
@@ -104,7 +105,7 @@
     function openJobModal() {
         document.getElementById('jobModal').style.display = 'block';
     }
-
+	
     // ฟังก์ชันปิดหน้าต่าง JOB
     function closeJobModal() {
         document.getElementById('jobModal').style.display = 'none';
