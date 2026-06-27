@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+	
+	<div style="text-align: center; margin-top: 100px;">
+        <h2>กรุณาเข้าสู่ระบบ</h2>
+        <form id="loginForm">
+            <div>
+                <label for="username">ชื่อผู้ใช้งาน (Username):</label><br>
+                <input type="text" id="username" required>
+            </div>
+            <br>
+            <div>
+                <label for="password">รหัสผ่าน (Password):</label><br>
+                <input type="password" id="password" required>
+            </div>
+            <br>
+            <button type="submit">เข้าสู่ระบบ</button>
+        </form>
+    </div>
+
+	<script>
+        // 1. ดักจับเหตุการณ์ตอนที่ผู้ใช้กดปุ่ม "เข้าสู่ระบบ"
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // ป้องกันไม่ให้หน้าเว็บรีโหลดหรือเปลี่ยนหน้าเองก่อนได้รับอนุญาต
+
+            // 2. ดึงค่าจากช่อง Username และ Password ที่ผู้ใช้กรอกบนหน้าเว็บ
+            var userVal = document.getElementById('username').value;
+            var passVal = document.getElementById('password').value;
+
+            // นำลิงก์ Web App URL ของคุณมาวางแทนที่ตรงนี้ครับ
+            var webAppUrl = "https://script.google.com/macros/s/AKfycbyW2sAMku5MGZAmTbxRqIM78Qf8-0CE5G2XTv7ZtTkSKSokUgFt0Jyu_raACh9UG8Af/exec"; 
+
+            // แสดงข้อความบอกผู้ใช้ว่ากำลังตรวจสอบข้อมูล
+            console.log("กำลังส่งข้อมูลไปเช็กที่ Google Sheets...");
+
+            // 3. ส่งข้อมูลไปเช็กที่หลังบ้าน (Google Sheets)
+            fetch(webAppUrl, {
+                method: 'POST',
+                body: JSON.stringify({
+                    username: userVal,
+                    password: passVal
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // 4. ได้รับผลลัพธ์กลับมาจาก Google Sheets แล้ว
+                if (data.success) {
+                    // ถ้าล็อกอินผ่าน แจ้งเตือนสิทธิ์ และเปลี่ยนหน้าอัตโนมัติ
+                    alert(data.message + " \nสิทธิ์ของคุณคือ: " + data.role);
+                    
+                    // 5. แยกเส้นทางหน้าจอตามประเภท User (Role)
+                    if (data.role === 'admin') {
+                        window.location.href = 'admin.html';
+                    } else if (data.role === 'manager') {
+                        window.location.href = 'manager.html';
+                    } else if (data.role === 'user') {
+                        window.location.href = 'user.html';
+                    }
+                } else {
+                    // ถ้าใส่รหัสผิด หรือไม่พบชื่อผู้ใช้ในตาราง
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('เกิดข้อผิดพลาดในการเชื่อมต่อระบบหลังบ้าน หรือลิงก์ URL ไม่ถูกต้อง');
+            });
+        });
+    </script>
+</body>
+</html>
