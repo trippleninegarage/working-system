@@ -5,39 +5,67 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Untitled Document</title>
 	<style>
-        /* พื้นหลังทั้งหมด (ดึงรูปภาพอู่รถมาใช้ พร้อมใส่ฟิล์มมืดโปร่งแสง) */
-        body {
-            background: linear-gradient(rgba(10, 11, 12, 0.85), rgba(10, 11, 12, 0.85)), url('bg-garage.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            overflow: hidden;
-        }
+    /* พื้นหลัง: ให้สว่างปกติ ไม่ต้องใส่ฟิล์มสีดำทับ */
+    body {
+        background: url('bg-garage.jpg'); /* ชื่อไฟล์รูปภาพพื้นหลังของคุณ */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        font-family: 'Prompt', sans-serif;
+    }
+
+    /* กล่องล็อกอิน: โปร่งใสสีเข้ม */
+    .login-container {
+        background: rgba(0, 0, 0, 0.7); /* สีดำโปร่งแสง 70% */
+        backdrop-filter: blur(8px); /* ทำให้ขอบฟุ้งๆ ดูหรู */
+        padding: 40px;
+        border-radius: 15px;
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+
+    /* ชื่อหัวด้านบน */
+    .brand-title {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+    }
+
+    /* อื่นๆ */
+    .input-group { text-align: left; margin-bottom: 15px; }
+    .input-group input { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: none; }
+    #submitBtn { width: 100%; padding: 10px; background: #c34a36; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px; }
 	</style>
 	
 </head>
-
 <body>
 	
-	<div style="text-align: center; margin-top: 100px;">
-        <h2>กรุณาเข้าสู่ระบบ</h2>
+	<!-- วางแทนที่ส่วนเดิมที่ลบออก -->
+    <div class="login-container">
+        <h1 class="brand-title">TrippleNineGarage</h1>
+        <h3>กรุณาเข้าสู่ระบบ</h3>
+        
         <form id="loginForm">
-            <div>
-                <label for="username">ชื่อผู้ใช้งาน (Username):</label><br>
+            <div class="input-group">
+                <label for="username">ชื่อผู้ใช้งาน (Username):</label>
                 <input type="text" id="username" required>
             </div>
-            <br>
-            <div>
-                <label for="password">รหัสผ่าน (Password):</label><br>
+            
+            <div class="input-group">
+                <label for="password">รหัสผ่าน (Password):</label>
                 <input type="password" id="password" required>
             </div>
-            <br>
+            
             <button type="button" id="submitBtn">เข้าสู่ระบบ</button>
         </form>
     </div>
