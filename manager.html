@@ -85,6 +85,29 @@
             const modal = document.getElementById('aiModal');
             modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
         }
+		function saveJob() {
+    // นำ URL ที่ Copy มาจาก Apps Script มาวางตรงนี้ครับ
+    const url = "https://script.google.com/macros/s/AKfycbwaxZ8gCjps6EpLEYCGa2WgpsGw_lR6br4_cGiTRX4mlFTrh8LJ4zg_lRjUK7BEWHciCw/exec"; 
+    
+    const payload = {
+        jobType: document.getElementById('jobType').value,
+        custName: document.getElementById('custName').value,
+        carPlate: document.getElementById('carPlate').value, // กรณีไม่กรอก ค่าจะเป็นค่าว่าง
+        phone: document.getElementById('phone').value,
+        jobDetail: document.getElementById('jobDetail').value
+    };
+
+    fetch(url, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    })
+    .then(() => {
+        alert("บันทึก JOB เรียบร้อย!");
+        closeJobModal();
+    });
+}
     </script>
 </body>
 </html>
