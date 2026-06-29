@@ -55,6 +55,35 @@ body {
     display: none; /* ซ่อนปุ่ม Hamburger ไว้ในคอม */
 }
 /* จัดหน้าจอ Responsive เหมือนเดิม */
+@media screen and (min-width: 769px) {
+    #menu-toggle { display: none; }
+}
+@media screen and (max-width: 768px) {
+    /* 1. ซ่อน Sidebar ทิ้งไว้ก่อน */
+    #sidebar {
+        display: none; 
+        width: 100%;
+        position: absolute; /* เพื่อให้มันเลื่อนลงมาทับเนื้อหาได้ */
+        z-index: 1000;
+        background: #000;
+    }
+
+    /* 2. เมื่อมี class .active ให้แสดงออกมา */
+    #sidebar.active {
+        display: block;
+    }
+
+    /* 3. ปุ่ม Hamburger (ต้องเอาไปใส่ใน HTML ด้วยนะ) */
+    #menu-toggle {
+        display: block;
+        width: 100%;
+        padding: 20px;
+        background: #c5a059;
+        color: #000;
+        font-size: 20px;
+        border: none;
+    }
+}
 @media (max-width: 768px) {
 	
     .app-container { flex-direction: column; }
