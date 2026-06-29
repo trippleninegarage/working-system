@@ -1,19 +1,4 @@
-function renderMenu() {
-    const menuList = document.getElementById('menu-list');
-    if (!menuList) return; // ถ้าหา ul id="menu-list" ไม่เจอ ให้หยุดทำงาน
-
-    const items = [
-        { name: "Dashboard", file: "dashboard" },
-        { name: "Jobs Management", file: "jobs" }
-    ];
-
-    menuList.innerHTML = ""; // เคลียร์เมนูเก่า (ถ้ามี)
-    items.forEach(item => {
-        const li = document.createElement('li');
-        li.innerHTML = `<a href="#" onclick="loadPage('${item.file}')">${item.name}</a>`;
-        menuList.appendChild(li);
-    });
-}// เพิ่มฟังก์ชันนี้ต่อท้ายฟังก์ชัน renderMenu ในไฟล์ sidebar.js
+// เพิ่มฟังก์ชันนี้ต่อท้ายฟังก์ชัน renderMenu ในไฟล์ sidebar.js
 async function loadPage(pageName) {
     const mainContent = document.getElementById('main-content');
     
@@ -28,4 +13,19 @@ async function loadPage(pageName) {
     if (pageName === 'jobs' && typeof loadJobs === 'function') {
         loadJobs();
     }
+}function renderMenu() {
+    const menuList = document.getElementById('menu-list');
+    if (!menuList) return; // ถ้าหา ul id="menu-list" ไม่เจอ ให้หยุดทำงาน
+
+    const items = [
+        { name: "Dashboard", file: "dashboard" },
+        { name: "Jobs Management", file: "jobs" }
+    ];
+
+    menuList.innerHTML = ""; // เคลียร์เมนูเก่า (ถ้ามี)
+    items.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="#" onclick="loadPage('${item.file}')">${item.name}</a>`;
+        menuList.appendChild(li);
+    });
 }
