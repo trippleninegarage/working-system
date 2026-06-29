@@ -93,6 +93,8 @@
                 if (data.success) {
                     alert(data.message + " \nระดับสิทธิ์ของคุณคือ: " + data.role);
                     
+					localStorage.setItem('userRole', data.role);
+					
                     if (data.role === 'admin') {
                         window.location.href = 'admin.html';
                     } else if (data.role === 'manager') {
