@@ -13,7 +13,7 @@ async function handleLogin() {
     if (data.success) {
         localStorage.setItem('userName', user); // บันทึกชื่อ
         localStorage.setItem('userRole', data.role); // บันทึกตำแหน่ง
-        window.location.href = 'manager.html';
+        window.location.href = 'home.html';
     } else {
         alert(data.message);
     }
