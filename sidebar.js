@@ -65,6 +65,7 @@ function handleLogout() {
     window.location.href = 'index.html';
 }
 function toggleMenu() {
-    const menuContainer = document.getElementById('menu-container');
-    menuContainer.classList.toggle('active');
+    const sidebar = document.getElementById('sidebar');
+    // สลับคลาส active เพื่อซ่อนหรือโชว์
+    sidebar.classList.toggle('active');
 }
