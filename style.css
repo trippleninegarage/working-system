@@ -12,6 +12,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;    /* ตรึงภาพไว้ไม่ให้เลื่อนตามหน้าจอ */
     min-height: 100vh;
+	font-size: 16px;
 }
 
 /* Container โปร่งแสงเพื่อให้เห็นภาพพื้นหลัง */
@@ -53,8 +54,14 @@ body {
 
 /* จัดหน้าจอ Responsive เหมือนเดิม */
 @media (max-width: 768px) {
+	
     .app-container { flex-direction: column; }
-    #sidebar { width: 100%; }
+	body {font-size: 18px; /* ปรับให้ใหญ่ขึ้นสำหรับมือถือ */}
+		#sidebar {width: 200px; /* ย่อขนาด sidebar ลงเล็กน้อยเพื่อให้พื้นที่เนื้อหาพอดี */}
+
+    	#menu-list a {font-size: 20px; /* ทำให้เมนูทางซ้ายกดง่ายขึ้น */
+				padding: 15px}
+		h1 {font-size: 24px;}
 }
 /* จัดการ main-content ให้มีช่องว่างและสีที่เข้ากับธีม */
 #main-content {
@@ -64,6 +71,7 @@ body {
     color: white;
     height: 100%;
     overflow-y: auto; /* ให้เลื่อนหน้าจอได้ถ้าเนื้อหาเยอะ */
+    overflow-x: auto; /* ทำให้ตารางเลื่อนซ้าย-ขวาได้โดยไม่พัง Layout */
 }
 
 /* จัดสไตล์ตารางให้สวยขึ้น */
