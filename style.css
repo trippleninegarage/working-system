@@ -16,18 +16,16 @@ body {
 
 /* Container โปร่งแสงเพื่อให้เห็นภาพพื้นหลัง */
 .app-container {
-    display: flex;
-    min-height: 100vh;
-    background-color: rgba(0, 0, 0, 0.7); /* สีดำโปร่งแสง 70% */
-    color: white;
+    display: flex; /* ทำให้ Sidebar กับ Main-content อยู่ข้างกัน */
+    height: 100vh;
 }
 
 /* แถบเมนูสีดำสไตล์โลโก้ */
 #sidebar {
     width: 250px;
-    background-color: #000; /* สีดำเข้ม */
-    border-right: 2px solid #c5a059; /* สีทองจากโลโก้ */
-    padding: 20px;
+    background-color: #000;
+    height: 100%;
+    border-right: 1px solid #c5a059; /* เส้นสีทอง */
 }
 
 #menu-list a {
@@ -60,11 +58,12 @@ body {
 }
 /* จัดการ main-content ให้มีช่องว่างและสีที่เข้ากับธีม */
 #main-content {
-	flex-grow: 1;
+    flex-grow: 1; /* ขยายให้เต็มพื้นที่ที่เหลือ */
     padding: 20px;
-    background-color: #1a1a1a; /* สีพื้นหลังเข้มเหมือนธีมเดิม */
-    min-height: 100vh;
+    background-color: rgba(255, 255, 255, 0.1); /* สีขาวโปร่งใส 10% ถ้าอยากได้เข้มกว่านี้ปรับเลข 0.1 เป็น 0.5 */
     color: white;
+    height: 100%;
+    overflow-y: auto; /* ให้เลื่อนหน้าจอได้ถ้าเนื้อหาเยอะ */
 }
 
 /* จัดสไตล์ตารางให้สวยขึ้น */
