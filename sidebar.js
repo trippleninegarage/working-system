@@ -1,32 +1,31 @@
-// 1. ฟังก์ชันดึงเนื้อหามาแปะใน main-content
-async function loadPage(pageName) {
-    const mainContent = document.getElementById('main-content');
-    
-    // โหลดไฟล์ HTML (เช่น jobs.html)
-    const response = await fetch(`${pageName}.html`);
-    const html = await response.text();
-    
-    // เอา HTML ที่ได้ไปวางในช่อง main-content
-    mainContent.innerHTML = html;
-
-    // ถ้าโหลดหน้า 'jobs' ให้เรียกฟังก์ชันโหลดตารางงานต่อทันที
-    if (pageName === 'jobs' && typeof loadJobs === 'function') {
-        loadJobs();
-    }
-}
-
-// 2. ปรับตอนสร้างเมนู ให้เรียก loadPage() แทนการใส่ link ตรงๆ
-function createMenu() {
+function renderMenu() {
     const menuList = document.getElementById('menu-list');
-    const menuItems = [
+    if (!menuList) return; // ถ้าหา ul id="menu-list" ไม่เจอ ให้หยุดทำงาน
+
+    const items = [
         { name: "Dashboard", file: "dashboard" },
         { name: "Jobs Management", file: "jobs" }
     ];
 
-    menuItems.forEach(item => {
+    menuList.innerHTML = ""; // เคลียร์เมนูเก่า (ถ้ามี)
+    items.forEach(item => {
         const li = document.createElement('li');
-        // ใช้ onclick เรียกฟังก์ชันแทนการเปลี่ยนหน้า
         li.innerHTML = `<a href="#" onclick="loadPage('${item.file}')">${item.name}</a>`;
         menuList.appendChild(li);
     });
+}// เพิ่มฟังก์ชันนี้ต่อท้ายฟังก์ชัน renderMenu ในไฟล์ sidebar.js
+async function loadPage(pageName) {
+    const mainContent = document.getElementById('main-content');
+    
+    // โหลดไฟล์ HTML เข้ามา (เช่น jobs.html)
+    const response = await fetch(`${pageName}.html`);
+    const html = await response.text();
+    
+    // นำเนื้อหามาแปะใน main-content
+    mainContent.innerHTML = html;
+
+    // ถ้าหน้าคือ 'jobs' ให้เรียกฟังก์ชันดึงตารางข้อมูล
+    if (pageName === 'jobs' && typeof loadJobs === 'function') {
+        loadJobs();
+    }
 }
