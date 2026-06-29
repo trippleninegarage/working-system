@@ -1,0 +1,60 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* ตั้งค่าพื้นฐาน */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+/* ใส่ภาพพื้นหลัง */
+body {
+    background-image: url('bg.jpg');
+    background-size: cover;          /* ปรับขนาดให้เต็มจอ */
+    background-position: center;     /* จับตรงกลาง */
+    background-repeat: no-repeat;
+    background-attachment: fixed;    /* ตรึงภาพไว้ไม่ให้เลื่อนตามหน้าจอ */
+    min-height: 100vh;
+}
+
+/* Container โปร่งแสงเพื่อให้เห็นภาพพื้นหลัง */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7); /* สีดำโปร่งแสง 70% */
+    color: white;
+}
+
+/* แถบเมนูสีดำสไตล์โลโก้ */
+#sidebar {
+    width: 250px;
+    background-color: #000; /* สีดำเข้ม */
+    border-right: 2px solid #c5a059; /* สีทองจากโลโก้ */
+    padding: 20px;
+}
+
+#menu-list a {
+    color: #fff;
+    padding: 15px;
+    display: block;
+    text-decoration: none;
+    border-bottom: 1px solid #333;
+}
+
+#menu-list a:hover {
+    background-color: #c5a059; /* ไฮไลท์สีทองเมื่อเอาเมาส์วาง */
+    color: #000;
+}
+
+/* ส่วนของปุ่ม Logout */
+#logout-btn {
+    margin-top: auto;
+    background: #c5a059;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* จัดหน้าจอ Responsive เหมือนเดิม */
+@media (max-width: 768px) {
+    .app-container { flex-direction: column; }
+    #sidebar { width: 100%; }
+}
