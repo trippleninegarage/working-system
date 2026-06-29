@@ -1,117 +1,17 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="th">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Untitled Document</title>
-	<style>
-    /* พื้นหลัง: ให้สว่างปกติ ไม่ต้องใส่ฟิล์มสีดำทับ */
-    body {
-        background: url('bg-garage.jpg'); /* ชื่อไฟล์รูปภาพพื้นหลังของคุณ */
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0;
-        font-family: 'Prompt', sans-serif;
-    }
-
-    /* กล่องล็อกอิน: โปร่งใสสีเข้ม */
-    .login-container {
-        background: rgba(0, 0, 0, 0.7); /* สีดำโปร่งแสง 70% */
-        backdrop-filter: blur(8px); /* ทำให้ขอบฟุ้งๆ ดูหรู */
-        padding: 40px;
-        border-radius: 15px;
-        width: 100%;
-        max-width: 400px;
-        text-align: center;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: white;
-    }
-
-    /* ชื่อหัวด้านบน */
-    .brand-title {
-        font-size: 28px;
-        font-weight: bold;
-        margin-bottom: 20px;
-        letter-spacing: 1px;
-    }
-
-    /* อื่นๆ */
-    .input-group { text-align: left; margin-bottom: 15px; }
-    .input-group input { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: none; }
-    #submitBtn { width: 100%; padding: 10px; background: #c34a36; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px; }
-	</style>
-	
+    <meta charset="UTF-8">
+    <title>Login - Tripple Nine Garage</title>
+    <link rel="stylesheet" href="style-login.css">
 </head>
 <body>
-	
-	<!-- วางแทนที่ส่วนเดิมที่ลบออก -->
     <div class="login-container">
-        <h1 class="brand-title">TrippleNineGarage</h1>
-        <h3>กรุณาเข้าสู่ระบบ</h3>
-        
-        <form id="loginForm">
-            <div class="input-group">
-                <label for="username">ชื่อผู้ใช้งาน (Username):</label>
-                <input type="text" id="username" required>
-            </div>
-            
-            <div class="input-group">
-                <label for="password">รหัสผ่าน (Password):</label>
-                <input type="password" id="password" required>
-            </div>
-            
-            <button type="button" id="submitBtn">เข้าสู่ระบบ</button>
-        </form>
+        <h2>TRIPPLE NINE</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="handleLogin()">Login</button>
     </div>
-
-	<script>
-        document.getElementById('submitBtn').addEventListener('click', function(e) {
-    		e.preventDefault(); // ล็อกหน้าเว็บไม่ให้รีเฟรชซ้ำสอง
-
-    		var userVal = document.getElementById('username').value;
-    		var passVal = document.getElementById('password').value;
-
-            // ⚠️ ตรวจสอบและสลับเอาลิงก์ Web App (doGet) ตัวล่าสุดจาก Google Sheets ของคุณมาใส่ตรงนี้
-            var webAppUrl = "https://script.google.com/macros/s/AKfycbyf0ViBvN5c5VG3x_ajh8dH5k_PAhmHCxK_U1w_Cf7fa-bn-gUgxtTtie143shnsAIy/exec"; 
-
-            // ปรับโครงสร้างข้อมูลเป็นการยิงแบบ GET (ต่อท้าย URL) เพื่อทะลุกำแพง CORS บนระบบออนไลน์
-            var finalUrl = webAppUrl + "?username=" + encodeURIComponent(userVal) + "&password=" + encodeURIComponent(passVal);
-
-            console.log("กำลังเชื่อมต่อระบบเพื่อตรวจสอบสิทธิ์...");
-
-            console.log("กำลังส่งข้อมูลไปเช็กที่ Google Sheets...");
-
-            fetch(finalUrl)
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert(data.message + " \nระดับสิทธิ์ของคุณคือ: " + data.role);
-                    
-					localStorage.setItem('userRole', data.role);
-					
-                    if (data.role === 'admin') {
-                        window.location.href = 'admin.html';
-                    } else if (data.role === 'manager') {
-                        window.location.href = 'manager.html';
-                    } else if (data.role === 'user') {
-                        window.location.href = 'user.html';
-                    }
-                } else {
-                    alert(data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('เกิดข้อผิดพลาดในการเชื่อมต่อหลังบ้าน กรุณาตรวจสอบลิงก์สคริปต์หรือการเชื่อมต่ออินเทอร์เน็ต');
-            });
-        });
-    </script>
-  
+    <script src="login.js"></script>
 </body>
 </html>
