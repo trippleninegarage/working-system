@@ -25,7 +25,7 @@ function loadSidebar() {
     const menuList = document.getElementById('menu-list');
     
     if (menuList && role && menuConfig[role]) {
-        menuList.innerHTML = ''; // เคลียร์เมนูเก่า (ถ้ามี)
+        menuList.innerHTML = '';
         menuConfig[role].forEach(item => {
             const li = document.createElement('li');
             li.innerHTML = `<a href="${item.link}">${item.name}</a>`;
