@@ -3,31 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="app-container"> <button id="menu-toggle" onclick="toggleMenu()">☰ เมนูหลัก</button>
 
-    <div class="app-container">
-	<body class="app-container">
-    <button id="menu-toggle" onclick="toggleMenu()">☰ เมนูหลัก</button>
-
-    <nav id="sidebar">
-        <div class="avatar-box">...</div>
-        <ul id="menu-list"></ul>
-        <button id="logout-btn" onclick="handleLogout()">Logout</button>
-    </nav>
-    
-    <main id="main-content">
-        </main>
-</body>
-</div>
+        <nav id="sidebar">
+            <div class="avatar-box">...</div>
+            <ul id="menu-list"></ul>
+            <button id="logout-btn" onclick="handleLogout()">Logout</button>
+        </nav>
+        
+        <main id="main-content">
+            </main>
+    </div>
 
     <script src="sidebar.js"></script>
-	<script>
-    window.onload = function() {
-        loadSidebar();        // สร้างเมนูตาม Role
-        loadPage('dashboard'); // โหลดหน้า Dashboard เป็นหน้าแรก
-    };
-	</script>
+    <script>
+        window.onload = function() {
+            loadSidebar(); 
+            loadPage('dashboard'); // เรียกผ่านฟังก์ชัน loadPage ไม่ใช่ href
+        };
+    </script>
 </body>
 </html>

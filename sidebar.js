@@ -27,11 +27,11 @@ function loadSidebar() {
     const menuList = document.getElementById('menu-list');
 
     if (menuList && role && menuConfig[role]) {
-        menuList.innerHTML = ''; // ล้างเมนูเก่าก่อนสร้างใหม่
+        menuList.innerHTML = '';
         menuConfig[role].forEach(item => {
             const li = document.createElement('li');
-            // ใช้ onclick แทน href ปกติ เพื่อให้โหลดผ่าน fetch
-            li.innerHTML = `<a href="#" onclick="loadPage('${item.file}')">${item.name}</a>`;
+            // สำคัญ: เปลี่ยน href เป็น # และใส่ onclick เพื่อเรียก loadPage
+            li.innerHTML = `<a href="#" onclick="loadPage('${item.file.replace('.html', '')}')">${item.name}</a>`;
             menuList.appendChild(li);
         });
     }

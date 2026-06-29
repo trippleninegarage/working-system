@@ -34,42 +34,38 @@ body, html {
 
 /* --- สำหรับหน้าจอมือถือ (<= 768px) --- */
 @media screen and (max-width: 768px) {
-    .app-container { flex-direction: column; }
-
-    #sidebar {
-        width: 100%;
-        height: auto;
-        display: none; /* ซ่อนเมนูไว้ก่อน */
-        position: absolute;
-        top: 60px; /* ให้แสดงใต้ปุ่ม */
-        left: 0;
-        z-index: 1000;
-    }
-
-    #sidebar.active {
-        display: flex; /* แสดงเมนูเมื่อกดปุ่ม */
-    }
-
+    /* ทำให้ปุ่มเมนูอยู่บนสุดเสมอ */
     #menu-toggle {
-        display: block; /* แสดงปุ่มเฉพาะในมือถือ */
+        display: block;
         width: 100%;
-        padding: 15px;
+        height: 60px; /* กำหนดความสูงให้ชัดเจน */
         background: #c5a059;
         color: black;
         border: none;
-        font-size: 22px;
-        font-weight: bold;
-        cursor: pointer;
+        font-size: 20px;
+        position: fixed; /* ล็อกปุ่มไว้ที่หัวกระดาษ */
+        top: 0;
+        left: 0;
+        z-index: 2000; /* ให้ปุ่มอยู่เหนือทุกอย่าง */
+    }
+
+    /* ขยับเนื้อหาลงมาไม่ให้ปุ่มทับ */
+    #sidebar {
+        display: none; 
+        width: 100%;
+        position: fixed; /* ล็อกเมนูไว้ */
+        top: 60px; /* เริ่มแสดงต่อจากปุ่ม */
+        left: 0;
+        z-index: 1500;
+        background: #000;
+    }
+
+    #sidebar.active {
+        display: block;
+    }
+
+    /* ปรับ main-content ให้มีระยะห่างจากปุ่ม */
+    #main-content {
+        margin-top: 60px; 
     }
 }
-
-/* --- ตกแต่งรายการเมนู --- */
-#menu-list { list-style: none; padding: 0; }
-#menu-list li a {
-    display: block;
-    padding: 15px;
-    color: white;
-    text-decoration: none;
-    border-bottom: 1px solid #333;
-}
-#menu-list li a:hover { background: #c5a059; color: black; }
