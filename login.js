@@ -2,22 +2,19 @@ async function handleLogin() {
     const user = document.getElementById('username').value;
     const pass = document.getElementById('password').value;
 
-    // สมมติว่าคุณเรียกไปที่ Google Apps Script ของคุณ
-    const response = await fetch('YOUR_GOOGLE_SCRIPT_URL', {
-        method: 'POST',
-        body: JSON.stringify({ username: user, password: pass })
-    });
-    
+    // สร้าง URL พร้อมพารามิเตอร์ต่อท้าย (ส่งแบบ GET)
+    const url = "https://script.google.com/macros/s/AKfycbwnuY5QobyulxT4Mzy6pckfhRpTMYPEuFcnLJu-ucAdCrZ4pEKQV8zFTkN7pun8gslV/exec" + 
+                "?username=" + encodeURIComponent(user) + 
+                "&password=" + encodeURIComponent(pass);
+
+    const response = await fetch(url);
     const data = await response.json();
 
     if (data.success) {
-        // เซฟข้อมูลลง localStorage
-        localStorage.setItem('userName', data.name);
-        localStorage.setItem('userRole', data.role);
-        
-        // พาไปหน้า Dashboard
+        localStorage.setItem('userName', user); // บันทึกชื่อ
+        localStorage.setItem('userRole', data.role); // บันทึกตำแหน่ง
         window.location.href = 'manager.html';
     } else {
-        alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
+        alert(data.message);
     }
 }
