@@ -64,3 +64,7 @@ function handleLogout() {
     localStorage.removeItem('userRole');
     window.location.href = 'index.html';
 }
+function toggleMenu() {
+    const menuContainer = document.getElementById('menu-container');
+    menuContainer.classList.toggle('active');
+}

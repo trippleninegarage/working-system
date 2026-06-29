@@ -51,7 +51,9 @@ body {
     cursor: pointer;
     font-weight: bold;
 }
-
+#menu-toggle {
+    display: none; /* ซ่อนปุ่ม Hamburger ไว้ในคอม */
+}
 /* จัดหน้าจอ Responsive เหมือนเดิม */
 @media (max-width: 768px) {
 	
@@ -92,3 +94,19 @@ td {
     padding: 10px;
     border-bottom: 1px solid #333;
 }
+#menu-toggle {
+        display: block; /* แสดงปุ่มบนมือถือ */
+        width: 100%;
+        padding: 15px;
+        background: #c5a059;
+        border: none;
+        font-size: 18px;
+    }
+
+    #menu-container {
+        display: none; /* ซ่อนเมนูไว้ก่อน */
+    }
+
+    #menu-container.active {
+        display: block; /* แสดงเมนูเมื่อกดปุ่ม */
+    }
