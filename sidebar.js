@@ -1,48 +1,32 @@
-const menuConfig = {
-    'manager': [
-        { name: 'Dashboard', link: 'manager.html' },
-        { name: 'Manage Jobs', link: 'jobs.html' },
-        { name: 'User Management', link: 'users.html' },
-        { name: 'Inventory', link: 'inventory.html' },
-        { name: 'Settings', link: 'settings.html' }
-    ],
-    'admin': [
-        { name: 'Dashboard', link: 'admin.html' },
-        { name: 'Manage Jobs', link: 'jobs.html' },
-        { name: 'User Management', link: 'users.html' },
-        { name: 'Inventory', link: 'inventory.html' },
-        { name: 'Settings', link: 'settings.html' }
-    ],
-    'user': [
-        { name: 'Dashboard', link: 'user.html' },
-        { name: 'Manage Jobs', link: 'jobs.html' },
-        { name: 'Settings', link: 'settings.html' }
-    ]
-};
+// 1. ฟังก์ชันดึงเนื้อหามาแปะใน main-content
+async function loadPage(pageName) {
+    const mainContent = document.getElementById('main-content');
+    
+    // โหลดไฟล์ HTML (เช่น jobs.html)
+    const response = await fetch(`${pageName}.html`);
+    const html = await response.text();
+    
+    // เอา HTML ที่ได้ไปวางในช่อง main-content
+    mainContent.innerHTML = html;
 
-function loadSidebar() {
-    // 1. ดึงข้อมูลจาก localStorage ที่เราเซฟไว้ตอน Login
-    const name = localStorage.getItem('userName'); 
-    const role = localStorage.getItem('userRole');
-    
-    // 2. เอาไปใส่ใน HTML
-    const nameEl = document.getElementById('display-name');
-    const roleEl = document.getElementById('display-role');
-    
-    if (nameEl) nameEl.innerText = name || "User";
-    if (roleEl) roleEl.innerText = role ? role.toUpperCase() : "";
-
-    // 3. ส่วนสร้างเมนู (เหมือนเดิม)
-    const menuList = document.getElementById('menu-list');
-    const roleKey = role || 'user'; // ถ้าไม่มี role ให้ default เป็น user
-    
-    if (menuList && menuConfig[roleKey]) {
-        menuConfig[roleKey].forEach(item => {
-            const li = document.createElement('li');
-            li.innerHTML = `<a href="${item.link}">${item.name}</a>`;
-            menuList.appendChild(li);
-        });
+    // ถ้าโหลดหน้า 'jobs' ให้เรียกฟังก์ชันโหลดตารางงานต่อทันที
+    if (pageName === 'jobs' && typeof loadJobs === 'function') {
+        loadJobs();
     }
 }
 
-document.addEventListener('DOMContentLoaded', loadSidebar);
+// 2. ปรับตอนสร้างเมนู ให้เรียก loadPage() แทนการใส่ link ตรงๆ
+function createMenu() {
+    const menuList = document.getElementById('menu-list');
+    const menuItems = [
+        { name: "Dashboard", file: "dashboard" },
+        { name: "Jobs Management", file: "jobs" }
+    ];
+
+    menuItems.forEach(item => {
+        const li = document.createElement('li');
+        // ใช้ onclick เรียกฟังก์ชันแทนการเปลี่ยนหน้า
+        li.innerHTML = `<a href="#" onclick="loadPage('${item.file}')">${item.name}</a>`;
+        menuList.appendChild(li);
+    });
+}

@@ -58,3 +58,30 @@ body {
     .app-container { flex-direction: column; }
     #sidebar { width: 100%; }
 }
+/* จัดการ main-content ให้มีช่องว่างและสีที่เข้ากับธีม */
+#main-content {
+	flex-grow: 1;
+    padding: 20px;
+    background-color: #1a1a1a; /* สีพื้นหลังเข้มเหมือนธีมเดิม */
+    min-height: 100vh;
+    color: white;
+}
+
+/* จัดสไตล์ตารางให้สวยขึ้น */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    background-color: #c5a059; /* สีทองที่คุณใช้ */
+    color: black;
+    padding: 12px;
+    text-align: left;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #333;
+}
