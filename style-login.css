@@ -1,0 +1,50 @@
+/* ตั้งค่าพื้นหลัง */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('login-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* กล่อง Login สีดำโปร่งแสง 50% */
+.login-container {
+    background-color: rgba(0, 0, 0, 0.5); 
+    padding: 40px;
+    border-radius: 20px; /* กรอบมน */
+    border: 2px solid #c5a059; /* สีกรอบทองจากโลโก้ */
+    width: 350px;
+    text-align: center;
+    backdrop-filter: blur(10px); /* เพิ่มความหรูหราด้วยการเบลอพื้นหลัง */
+}
+
+h2 { color: #fff; margin-bottom: 20px; }
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #555;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #c5a059;
+    border: none;
+    border-radius: 8px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover { background-color: #a8854a; }
