@@ -6,10 +6,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app-container"> <button id="menu-toggle" onclick="toggleMenu()">☰ เมนูหลัก</button>
-
+    <div class="app-container">
         <nav id="sidebar">
-            <div class="avatar-box">...</div>
+            <div class="avatar-box" style="text-align: center; padding: 20px;">
+                <div style="width: 80px; height: 80px; background: #333; border-radius: 50%; margin: 0 auto;"></div>
+            </div>
             <ul id="menu-list"></ul>
             <button id="logout-btn" onclick="handleLogout()">Logout</button>
         </nav>
@@ -21,8 +22,8 @@
     <script src="sidebar.js"></script>
     <script>
         window.onload = function() {
-            loadSidebar(); 
-            loadPage('dashboard'); // เรียกผ่านฟังก์ชัน loadPage ไม่ใช่ href
+            loadSidebar();
+            loadPage('dashboard'); // โหลดหน้า Dashboard เริ่มต้น
         };
     </script>
 </body>
