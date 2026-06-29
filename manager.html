@@ -29,11 +29,9 @@
 
     <script src="sidebar.js"></script>
 	<script>
-    // สั่งให้สร้างเมนูทันทีที่หน้าเว็บโหลดเสร็จ
     window.onload = function() {
-        renderMenu(); // หรือชื่อฟังก์ชันที่คุณตั้งไว้ใน sidebar.js
-        			  // สามารถตั้งให้โหลดหน้าแรกให้อัตโนมัติก็ได้ครับ
-        loadPage('dashboard'); 
+        loadSidebar();        // สร้างเมนูตาม Role
+        loadPage('dashboard'); // โหลดหน้า Dashboard เป็นหน้าแรก
     };
 	</script>
 </body>

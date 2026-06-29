@@ -1,27 +1,47 @@
-// 1. ฟังก์ชันสร้างเมนูทางด้านซ้าย
-function renderMenu() {
+// 1. กำหนดเมนูตาม Role
+const menuConfig = {
+    'manager': [
+        { name: 'Dashboard', file: 'dashboard' },
+        { name: 'Manage Jobs', file: 'jobs' },
+        { name: 'User Management', file: 'users' },
+        { name: 'Inventory', file: 'inventory' },
+        { name: 'Settings', file: 'settings' }
+    ],
+    'admin': [
+        { name: 'Dashboard', file: 'admin' },
+        { name: 'Manage Jobs', file: 'jobs' },
+        { name: 'User Management', file: 'users' },
+        { name: 'Inventory', file: 'inventory' },
+        { name: 'Settings', file: 'settings' }
+    ],
+    'user': [
+        { name: 'Dashboard', file: 'user' },
+        { name: 'Manage Jobs', file: 'jobs' },
+        { name: 'Settings', file: 'settings' }
+    ]
+};
+
+// 2. ฟังก์ชันสร้างเมนูทางด้านซ้าย
+function loadSidebar() {
+    const role = localStorage.getItem('userRole');
     const menuList = document.getElementById('menu-list');
-    if (!menuList) return;
 
-    const items = [
-        { name: "Dashboard", file: "dashboard" },
-        { name: "Jobs Management", file: "jobs" }
-    ];
-
-    menuList.innerHTML = ""; // เคลียร์เมนูเก่าทิ้งก่อน
-    items.forEach(item => {
-        const li = document.createElement('li');
-        li.innerHTML = `<a href="#" onclick="loadPage('${item.file}')">${item.name}</a>`;
-        menuList.appendChild(li);
-    });
+    if (menuList && role && menuConfig[role]) {
+        menuList.innerHTML = ''; // ล้างเมนูเก่าก่อนสร้างใหม่
+        menuConfig[role].forEach(item => {
+            const li = document.createElement('li');
+            // ใช้ onclick แทน href ปกติ เพื่อให้โหลดผ่าน fetch
+            li.innerHTML = `<a href="#" onclick="loadPage('${item.file}')">${item.name}</a>`;
+            menuList.appendChild(li);
+        });
+    }
 }
 
-// 2. ฟังก์ชันโหลดไฟล์ HTML มาแปะใน main-content
+// 3. ฟังก์ชันโหลดไฟล์ HTML มาแปะใน main-content
 async function loadPage(pageName) {
     const mainContent = document.getElementById('main-content');
     
     try {
-        // ดึงไฟล์ HTML (เช่น dashboard.html หรือ jobs.html)
         const response = await fetch(`${pageName}.html`);
         
         if (!response.ok) throw new Error("ไม่พบไฟล์: " + pageName);
@@ -39,7 +59,7 @@ async function loadPage(pageName) {
     }
 }
 
-// 3. ฟังก์ชัน Logout (นำมารวมไว้ที่นี่เพื่อความเป็นระเบียบ)
+// 4. ฟังก์ชัน Logout
 function handleLogout() {
     localStorage.removeItem('userRole');
     window.location.href = 'index.html';
