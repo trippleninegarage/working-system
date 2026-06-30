@@ -49,3 +49,15 @@ function handleLogout() {
     localStorage.removeItem('userRole');
     window.location.href = 'index.html';
 }
+function openJobModal(jobData) {
+    document.getElementById('jobModal').style.display = "block";
+    document.getElementById('modalBody').innerHTML = `
+        <p>ทะเบียน: ${jobData.plate}</p>
+        <p>รายละเอียด: ${jobData.detail}</p>
+        <p>สถานะ: ${jobData.status}</p>
+    `;
+}
+
+function closeModal() {
+    document.getElementById('jobModal').style.display = "none";
+}

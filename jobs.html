@@ -3,7 +3,6 @@
         <h2>Manage Jobs</h2>
         <button class="add-btn" onclick="openJobModal()">+ เพิ่มงานใหม่</button>
     </header>
-
     <input type="text" id="job-search" placeholder="ค้นหางาน (ทะเบียนรถ, ชื่อลูกค้า)..." onkeyup="filterJobs()">
 
     <div class="table-wrapper">
@@ -20,4 +19,11 @@
                 </tbody>
         </table>
     </div>
+	<div id="jobModal" class="modal">
+  		<div class="modal-content">
+    		<span class="close" onclick="closeModal()">&times;</span>
+    		<h2 id="modalTitle">รายละเอียดงาน</h2>
+    		<div id="modalBody"></div>
+  		</div>
+	</div>
 </div>

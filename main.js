@@ -4,7 +4,7 @@ async function loadJobs() {
 
     try {
         // แทนที่ URL ด้วย Web App URL ของคุณ
-        const response = await fetch('YOUR_GOOGLE_APPS_SCRIPT_URL');
+        const response = await fetch('https://script.google.com/macros/s/AKfycbx__TZQ-qX3YjFd2qGrhkOSuI9kn9Ge6izR1W3AAxCv4G4MeLih67mlC3eng7wpGWTKtQ/exec');
         const data = await response.json();
 
         jobBody.innerHTML = "";

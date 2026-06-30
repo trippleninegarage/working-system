@@ -113,3 +113,19 @@ td {
     cursor: pointer;
     font-weight: bold;
 }
+.modal {
+  display: none; 
+  position: fixed; 
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  z-index: 2000;
+}
+.modal-content {
+  background-color: #222;
+  margin: 15% auto;
+  padding: 20px;
+  width: 80%;
+  color: white;
+  border: 1px solid var(--primary-gold);
+}
