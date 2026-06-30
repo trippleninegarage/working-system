@@ -3,7 +3,7 @@ async function handleLogin() {
     const pass = document.getElementById('password').value;
 
     // สร้าง URL พร้อมพารามิเตอร์ต่อท้าย (ส่งแบบ GET)
-    const url = "https://script.google.com/macros/s/AKfycbwCV0HqoqQTPWKqUgVdcXeAKier3m9QhKnigQ4vd9gNNUqEjRwhP2VgYxCznNvUiZ4S/exec" + 
+    const url = "https://script.google.com/macros/s/AKfycby5PwNlrEtp0Z-2ZzL8gUMwrlIggeWuEoHHgEE9NIbmk3KMq_JeRNNZKtN5CnqgiZ5G/exec" + 
                 "?username=" + encodeURIComponent(user) + 
                 "&password=" + encodeURIComponent(pass);
 
