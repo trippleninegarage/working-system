@@ -84,15 +84,14 @@ function saveJob(event) {
         .addJobToSheet(data);
 }
 function openJobModal() {
-    // 1. เปิดหน้าต่าง Modal
     document.getElementById('jobModal').style.display = "block";
     
-    // 2. ดึงค่าชื่อเล่นจาก localStorage
-    const nickname = localStorage.getItem('userName');
+    // ดึงค่าจาก Key ที่ชื่อว่า 'name'
+    const staffNickname = localStorage.getItem('name'); 
     
-    // 3. นำชื่อมาใส่ในช่อง input โดยอัตโนมัติ
     const staffField = document.getElementById('staffName');
     if (staffField) {
-        staffField.value = name || 'ไม่ระบุชื่อ';
+        // ใส่ชื่อลงในช่อง และเช็คว่าถ้าไม่มีค่าให้แสดงว่า "ไม่พบชื่อ"
+        staffField.value = staffNickname ? staffNickname : "ไม่พบชื่อ";
     }
 }
