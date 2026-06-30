@@ -1,10 +1,23 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Untitled Document</title>
-</head>
+<div class="job-container">
+    <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2>Manage Jobs</h2>
+        <button class="add-btn" onclick="openJobModal()">+ เพิ่มงานใหม่</button>
+    </header>
 
-<body>
-</body>
-</html>
+    <input type="text" id="job-search" placeholder="ค้นหางาน (ทะเบียนรถ, ชื่อลูกค้า)..." onkeyup="filterJobs()">
+
+    <div class="table-wrapper">
+        <table id="job-table">
+            <thead>
+                <tr>
+                    <th>ทะเบียน</th>
+                    <th>รายการ</th>
+                    <th>สถานะ</th>
+                    <th>จัดการ</th>
+                </tr>
+            </thead>
+            <tbody id="job-body">
+                </tbody>
+        </table>
+    </div>
+</div>

@@ -80,3 +80,36 @@ body, html {
     
     color: var(--text-white);
 }
+.table-wrapper {
+    overflow-x: auto; /* ทำให้เลื่อนตารางได้ในมือถือ */
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+}
+
+th {
+    background-color: var(--primary-gold);
+    color: black;
+    padding: 12px;
+    text-align: left;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #333;
+}
+
+.add-btn {
+    background: var(--primary-gold);
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
