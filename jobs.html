@@ -23,10 +23,8 @@
   		<div class="modal-content">
     		<span class="close" onclick="closeModal()">&times;</span>
     		<h2 id="modalTitle">รายละเอียดงาน</h2>
-    		<div id="modalBody"></div>
-  		</div>
-	</div>
-	<form id="jobForm" onsubmit="saveJob(event)">
+    		<div id="modalBody">
+			<form id="jobForm" onsubmit="saveJob(event)">
   		<label style="color:white;">ประเภทลูกค้า:</label>
   			<select id="type" required style="width: 90%; padding: 10px; margin: 10px 0;">
     			<option value="ลูกค้าประกันภัย">ลูกค้าประกันภัย</option>
@@ -46,4 +44,8 @@
   
   		<button type="submit" class="add-btn">บันทึกข้อมูล</button>
 	</form>
+			</div>
+  		</div>
+	</div>
+	
 </div>
