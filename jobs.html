@@ -26,4 +26,24 @@
     		<div id="modalBody"></div>
   		</div>
 	</div>
+	<form id="jobForm" onsubmit="saveJob(event)">
+  		<label style="color:white;">ประเภทลูกค้า:</label>
+  			<select id="type" required style="width: 90%; padding: 10px; margin: 10px 0;">
+    			<option value="ลูกค้าประกันภัย">ลูกค้าประกันภัย</option>
+    			<option value="ลูกค้าเงินสด">ลูกค้าเงินสด</option>
+    			<option value="ลูกค้าอะไหล่">ลูกค้าอะไหล่</option>
+  			</select><br>
+
+  		<input type="date" id="date" required><br>
+  		<input type="text" id="customerName" placeholder="ชื่อลูกค้า" required><br>
+  		<input type="tel" id="tel" placeholder="เบอร์โทรศัพท์"><br>
+  		<input type="text" id="licensePlate" placeholder="ทะเบียนรถ" required><br>
+  		<textarea id="description" placeholder="รายละเอียดงาน"></textarea><br>
+  		<input type="number" id="serviceFee" placeholder="ค่าบริการ"><br>
+  		<input type="number" id="partsCost" placeholder="ค่าอะไหล่"><br>
+  
+  		<input type="text" id="status" value="กำลังดำเนินการ" readonly><br>
+  
+  		<button type="submit" class="add-btn">บันทึกข้อมูล</button>
+	</form>
 </div>

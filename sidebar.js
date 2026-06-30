@@ -61,3 +61,25 @@ function openJobModal(jobData) {
 function closeModal() {
     document.getElementById('jobModal').style.display = "none";
 }
+function saveJob(event) {
+    event.preventDefault();
+    const data = {
+        type: document.getElementById('type').value, // ดึงค่าจาก select
+        date: document.getElementById('date').value,
+        customerName: document.getElementById('customerName').value,
+        tel: document.getElementById('tel').value,
+        licensePlate: document.getElementById('licensePlate').value,
+        description: document.getElementById('description').value,
+        serviceFee: document.getElementById('serviceFee').value,
+        partsCost: document.getElementById('partsCost').value,
+        status: document.getElementById('status').value
+    };
+
+    google.script.run
+        .withSuccessHandler(() => {
+            alert("บันทึกรายการเรียบร้อย!");
+            closeModal();
+            loadJobs(); // โหลดหน้าตารางใหม่
+        })
+        .addJobToSheet(data);
+}
