@@ -83,3 +83,16 @@ function saveJob(event) {
         })
         .addJobToSheet(data);
 }
+function openJobModal() {
+    // 1. เปิดหน้าต่าง Modal
+    document.getElementById('jobModal').style.display = "block";
+    
+    // 2. ดึงค่าชื่อเล่นจาก localStorage
+    const nickname = localStorage.getItem('userName');
+    
+    // 3. นำชื่อมาใส่ในช่อง input โดยอัตโนมัติ
+    const staffField = document.getElementById('staffName');
+    if (staffField) {
+        staffField.value = name || 'ไม่ระบุชื่อ';
+    }
+}

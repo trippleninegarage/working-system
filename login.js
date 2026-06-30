@@ -11,7 +11,7 @@ async function handleLogin() {
     const data = await response.json();
 
     if (data.success) {
-        localStorage.setItem('userName', 'ชื่อเล่นของคุณ'); // เช่น 'ต้น'
+        localStorage.setItem('userName', 'name'); // เช่น 'ต้น'
         localStorage.setItem('userRole', data.role); // บันทึกตำแหน่ง
         window.location.href = 'home.html';
     } else {
