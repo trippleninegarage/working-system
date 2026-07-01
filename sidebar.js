@@ -79,7 +79,7 @@ async function saveJob(event) {
     staffName: localStorage.getItem('name')
 };
 
-    const url = "https://script.google.com/macros/s/AKfycby5PwNlrEtp0Z-2ZzL8gUMwrlIggeWuEoHHgEE9NIbmk3KMq_JeRNNZKtN5CnqgiZ5G/exec"; // ตรวจสอบ URL นี้ให้ถูกต้องอีกครั้ง
+    const url = "https://script.google.com/macros/s/AKfycbxNVSAb2vh0SaHb6ckP4w2RXf77jQENEOI4-7pNNoIaQEgJeHCXqzQW7Mak0IIbixnOZA/exec"; // ตรวจสอบ URL นี้ให้ถูกต้องอีกครั้ง
 
     try {
         const response = await fetch(url, {
@@ -129,7 +129,7 @@ function closeJob(jobId) {
 
 // ฟังก์ชันกลางสำหรับส่งข้อมูล (ส่งไปที่ URL Web App เดียวกัน)
 async function sendRequest(payload) {
-    const url = "https://script.google.com/macros/s/AKfycbxuyTR9sCKIzeWWuhIo079ZypRJi8R0fJAY19-z8gssxfpeKh_3nN0alwa5npT2DMpvtw";
+    const url = "https://script.google.com/macros/s/AKfycbxNVSAb2vh0SaHb6ckP4w2RXf77jQENEOI4-7pNNoIaQEgJeHCXqzQW7Mak0IIbixnOZA/exec";
     await fetch(url, {
         method: "POST",
         mode: "cors",
@@ -137,44 +137,3 @@ async function sendRequest(payload) {
     });
     alert("ดำเนินการสำเร็จ!");
     loadJobs(); // โหลดหน้าตารางใหม่
-}function doPost(e) {
-  var data = JSON.parse(e.postData.contents);
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = ss.getSheetByName('Jobs');
-  var action = data.action; // รับค่า action มาจากหน้าเว็บ
-
-  // 1. กรณีบันทึกข้อมูลใหม่ (Add)
-  if (action === "add") {
-    sheet.appendRow([
-      data.id, 
-      data.type, 
-      data.date, 
-      data.customerName, 
-      data.status, 
-      data.staffName
-    ]);
-  } 
-  // 2. กรณีลบข้อมูล (Delete)
-  else if (action === "delete") {
-    var rows = sheet.getDataRange().getValues();
-    for (var i = rows.length - 1; i >= 1; i--) {
-      if (rows[i][0] == data.id) { // เช็คจาก Job ID
-        sheet.deleteRow(i + 1);
-        break;
-      }
-    }
-  } 
-  // 3. กรณีปิดจ๊อบ (Close)
-  else if (action === "close") {
-    var rows = sheet.getDataRange().getValues();
-    for (var i = 1; i < rows.length; i++) {
-      if (rows[i][0] == data.id) {
-        sheet.getRange(i + 1, 5).setValue("ปิดงาน"); // สมมติสถานะอยู่คอลัมน์ E
-        break;
-      }
-    }
-  }
-
-  return ContentService.createTextOutput(JSON.stringify({result: "success"}))
-    .setMimeType(ContentService.MimeType.JSON);
-}
