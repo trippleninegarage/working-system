@@ -62,6 +62,8 @@ function closeModal() {
     document.getElementById('jobModal').style.display = "none";
 }
 function saveJob(event) {
+	event.preventDefault();
+    console.log("เริ่มบันทึก..."); // ดูว่ากดปุ่มแล้วฟังก์ชันทำงานไหม
     event.preventDefault();
     const data = {
         type: document.getElementById('type').value, // ดึงค่าจาก select
