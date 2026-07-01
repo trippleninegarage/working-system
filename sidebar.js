@@ -65,37 +65,38 @@ async function saveJob(event) {
     event.preventDefault();
     console.log("เริ่มบันทึก...");
 
-    // 1. เก็บข้อมูลจาก Form
     const jobData = {
         action: "add",
         type: document.getElementById('type').value,
         date: document.getElementById('date').value,
-        customerName: document.getElementById('customerName').value,
-        tel: document.getElementById('tel').value,
-        licensePlate: document.getElementById('licensePlate').value,
-        description: document.getElementById('description').value,
-        serviceFee: document.getElementById('serviceFee').value,
-        status: document.getElementById('status').value,
-        staffName: document.getElementById('staffName').value
+        customerName: document.getElementById('customerName').value, // เช็ค ID ให้ตรงกับ HTML
+        // ... เพิ่ม field ให้ครบตามที่ส่งไป
+        staffName: localStorage.getItem('name')
     };
 
-    // 2. ส่งข้อมูลไปที่ URL ของ Web App (อันเดียวกับที่คุณใช้ Login)
-    const url = "https://script.google.com/macros/s/AKfycby5PwNlrEtp0Z-2ZzL8gUMwrlIggeWuEoHHgEE9NIbmk3KMq_JeRNNZKtN5CnqgiZ5G/exe"; 
+    const url = "https://script.google.com/macros/s/AKfycby5PwNlrEtp0Z-2ZzL8gUMwrlIggeWuEoHHgEE9NIbmk3KMq_JeRNNZKtN5CnqgiZ5G/exe"; // ตรวจสอบ URL นี้ให้ถูกต้องอีกครั้ง
 
     try {
         const response = await fetch(url, {
             method: "POST",
-            mode: "no-cors", // เพื่อให้ผ่านสิทธิ์ข้ามโดเมน
+            mode: "no-cors",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(jobData)
         });
 
         alert("บันทึกสำเร็จ!");
-        closeModal(); // ปิดหน้า Modal
-        loadJobs();   // โหลดรายการใหม่
+        closeModal();
+        
+        // ตรวจสอบว่ามีฟังก์ชันนี้ไหม ถ้ายังไม่มี ให้คอมเมนต์บรรทัดนี้ไว้ก่อน
+        if (typeof loadJobs === 'function') {
+            loadJobs(); 
+        } else {
+            console.warn("ยังไม่ได้สร้างฟังก์ชัน loadJobs()");
+        }
+
     } catch (error) {
         console.error("Error:", error);
-        alert("เกิดข้อผิดพลาดในการบันทึก");
+        alert("เกิดข้อผิดพลาดในการส่งข้อมูล: " + error.message);
     }
 }
 function openJobModal() {
