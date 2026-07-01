@@ -66,20 +66,25 @@ async function saveJob(event) {
     console.log("เริ่มบันทึก...");
 
     const jobData = {
-        action: "add",
-        type: document.getElementById('type').value,
-        date: document.getElementById('date').value,
-        customerName: document.getElementById('customerName').value, // เช็ค ID ให้ตรงกับ HTML
-        // ... เพิ่ม field ให้ครบตามที่ส่งไป
-        staffName: localStorage.getItem('name')
-    };
+    action: "add",
+    type: document.getElementById('type').value,
+    date: document.getElementById('date').value,
+    customerName: document.getElementById('customerName').value,
+    tel: document.getElementById('tel').value,
+    licensePlate: document.getElementById('licensePlate').value,
+    description: document.getElementById('description').value,
+    serviceFee: document.getElementById('serviceFee').value,
+    partsCost: document.getElementById('partsCost').value,
+    status: "กำลังดำเนินการ", // หรือค่าจาก input
+    staffName: localStorage.getItem('name')
+};
 
-    const url = "https://script.google.com/macros/s/AKfycbwMdW-_MZT7NKrtNlqfZLNPn4E3jvH83dO_XCfUxuR_as3Vz7xrzLm7tkiircUbd97lEg/exec"; // ตรวจสอบ URL นี้ให้ถูกต้องอีกครั้ง
+    const url = "https://script.google.com/macros/s/AKfycbxuyTR9sCKIzeWWuhIo079ZypRJi8R0fJAY19-z8gssxfpeKh_3nN0alwa5npT2DMpvtw/exec"; // ตรวจสอบ URL นี้ให้ถูกต้องอีกครั้ง
 
     try {
         const response = await fetch(url, {
             method: "POST",
-            mode: "no-cors",
+            mode: "cors",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(jobData)
         });
@@ -127,7 +132,7 @@ async function sendRequest(payload) {
     const url = "https://script.google.com/macros/s/AKfycbz0ck3ahvXno-884yk9ThUzkEOxTXn2pp6V70pjKteBMyBC8EIp_LX_UG4hj9E6w8dhsg/exec";
     await fetch(url, {
         method: "POST",
-        mode: "no-cors",
+        mode: "cors",
         body: JSON.stringify(payload)
     });
     alert("ดำเนินการสำเร็จ!");
