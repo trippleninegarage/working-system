@@ -123,7 +123,7 @@ function closeJob(jobId) {
 
 // ฟังก์ชันกลางสำหรับส่งข้อมูล (ส่งไปที่ URL Web App เดียวกัน)
 async function sendRequest(payload) {
-    const url = "https://script.google.com/macros/s/AKfycbzUdE_a9ZbMjtnSotxOjHq_uzKDKQaNK4IR-sTPMJ2QIt09M-NZ4Q66BtuoXzxg-QDUeg/exec";
+    const url = "https://script.google.com/macros/s/AKfycbz0ck3ahvXno-884yk9ThUzkEOxTXn2pp6V70pjKteBMyBC8EIp_LX_UG4hj9E6w8dhsg/exec";
     await fetch(url, {
         method: "POST",
         mode: "no-cors",
