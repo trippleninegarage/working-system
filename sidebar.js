@@ -83,11 +83,11 @@ async function saveJob(event) {
 
     try {
         const response = await fetch(url, {
-            method: "POST",
-            mode: "cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(jobData)
-        });
+    		method: "POST",
+    		mode: "cors", // เปลี่ยนจาก no-cors เป็น cors
+    		headers: { "Content-Type": "application/json" },
+    		body: JSON.stringify(jobData)
+		});
 
         alert("บันทึกสำเร็จ!");
         closeModal();
