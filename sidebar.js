@@ -138,3 +138,7 @@ async function sendRequest(payload) {
     alert("ดำเนินการสำเร็จ!");
     loadJobs(); // โหลดหน้าตารางใหม่
 }
+function loadJobs() {
+    console.log("ฟังก์ชัน loadJobs ถูกเรียกใช้งานแล้ว แต่ยังไม่ได้เขียน logic");
+    // เดี๋ยวเราค่อยมาเติมโค้ดดึงข้อมูลจาก Google Sheets ที่นี่ครับ
+}
