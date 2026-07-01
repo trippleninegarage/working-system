@@ -79,7 +79,7 @@ async function saveJob(event) {
     staffName: localStorage.getItem('name')
 };
 
-    const url = "https://script.google.com/macros/s/AKfycbyvtCV4goDRuU6J1QwTzYk1cSJQsirl1b8t0y-719mahU34kiJiNi8XqETYRCglauh3ew/exec"; // ตรวจสอบ URL นี้ให้ถูกต้องอีกครั้ง
+    const url = "https://script.google.com/macros/s/AKfycbzHWl21BBdvKyEGjeZ38-dBaMIoQJwpnS3fn0FhJ5ulSqu5GjmhxjXZSeEw5daCgq12nw/exec"; // ตรวจสอบ URL นี้ให้ถูกต้องอีกครั้ง
 
     try {
         const response = await fetch(url, {
@@ -129,7 +129,7 @@ function closeJob(jobId) {
 
 // ฟังก์ชันกลางสำหรับส่งข้อมูล (ส่งไปที่ URL Web App เดียวกัน)
 async function sendRequest(payload) {
-    const url = "https://script.google.com/macros/s/AKfycbyvtCV4goDRuU6J1QwTzYk1cSJQsirl1b8t0y-719mahU34kiJiNi8XqETYRCglauh3ew/exec";
+    const url = "https://script.google.com/macros/s/AKfycbzHWl21BBdvKyEGjeZ38-dBaMIoQJwpnS3fn0FhJ5ulSqu5GjmhxjXZSeEw5daCgq12nw/exec";
     await fetch(url, {
         method: "POST",
         mode: "cors",
