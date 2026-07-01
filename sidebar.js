@@ -137,3 +137,4 @@ async function sendRequest(payload) {
     });
     alert("ดำเนินการสำเร็จ!");
     loadJobs(); // โหลดหน้าตารางใหม่
+}
