@@ -61,29 +61,42 @@ function openJobModal(jobData) {
 function closeModal() {
     document.getElementById('jobModal').style.display = "none";
 }
-function saveJob(event) {
-	event.preventDefault();
-    console.log("เริ่มบันทึก..."); // ดูว่ากดปุ่มแล้วฟังก์ชันทำงานไหม
+async function saveJob(event) {
     event.preventDefault();
-    const data = {
-        type: document.getElementById('type').value, // ดึงค่าจาก select
+    console.log("เริ่มบันทึก...");
+
+    // 1. เก็บข้อมูลจาก Form
+    const jobData = {
+        action: "add",
+        type: document.getElementById('type').value,
         date: document.getElementById('date').value,
         customerName: document.getElementById('customerName').value,
         tel: document.getElementById('tel').value,
         licensePlate: document.getElementById('licensePlate').value,
         description: document.getElementById('description').value,
         serviceFee: document.getElementById('serviceFee').value,
-        partsCost: document.getElementById('partsCost').value,
-        status: document.getElementById('status').value
+        status: document.getElementById('status').value,
+        staffName: document.getElementById('staffName').value
     };
 
-    google.script.run
-        .withSuccessHandler(() => {
-            alert("บันทึกรายการเรียบร้อย!");
-            closeModal();
-            loadJobs(); // โหลดหน้าตารางใหม่
-        })
-        .addJobToSheet(data);
+    // 2. ส่งข้อมูลไปที่ URL ของ Web App (อันเดียวกับที่คุณใช้ Login)
+    const url = "https://script.google.com/macros/s/AKfycby5PwNlrEtp0Z-2ZzL8gUMwrlIggeWuEoHHgEE9NIbmk3KMq_JeRNNZKtN5CnqgiZ5G/exe"; 
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            mode: "no-cors", // เพื่อให้ผ่านสิทธิ์ข้ามโดเมน
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(jobData)
+        });
+
+        alert("บันทึกสำเร็จ!");
+        closeModal(); // ปิดหน้า Modal
+        loadJobs();   // โหลดรายการใหม่
+    } catch (error) {
+        console.error("Error:", error);
+        alert("เกิดข้อผิดพลาดในการบันทึก");
+    }
 }
 function openJobModal() {
     document.getElementById('jobModal').style.display = "block";
@@ -110,7 +123,7 @@ function closeJob(jobId) {
 
 // ฟังก์ชันกลางสำหรับส่งข้อมูล (ส่งไปที่ URL Web App เดียวกัน)
 async function sendRequest(payload) {
-    const url = "YOUR_WEB_APP_URL_HERE";
+    const url = "https://script.google.com/macros/s/AKfycbzUdE_a9ZbMjtnSotxOjHq_uzKDKQaNK4IR-sTPMJ2QIt09M-NZ4Q66BtuoXzxg-QDUeg/exec";
     await fetch(url, {
         method: "POST",
         mode: "no-cors",
