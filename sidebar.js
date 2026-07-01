@@ -74,7 +74,7 @@ async function saveJob(event) {
         staffName: localStorage.getItem('name')
     };
 
-    const url = "https://script.google.com/macros/s/AKfycby5PwNlrEtp0Z-2ZzL8gUMwrlIggeWuEoHHgEE9NIbmk3KMq_JeRNNZKtN5CnqgiZ5G/exe"; // ตรวจสอบ URL นี้ให้ถูกต้องอีกครั้ง
+    const url = "https://script.google.com/macros/s/AKfycbwMdW-_MZT7NKrtNlqfZLNPn4E3jvH83dO_XCfUxuR_as3Vz7xrzLm7tkiircUbd97lEg/exec"; // ตรวจสอบ URL นี้ให้ถูกต้องอีกครั้ง
 
     try {
         const response = await fetch(url, {
